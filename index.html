@@ -611,6 +611,39 @@ let autosaveTimer=null;
 document.addEventListener('input', ()=>{
   if(autosaveTimer) clearTimeout(autosaveTimer);
   autosaveTimer = setTimeout(()=>{ saveState(); }, 1200);
+  /* autosave */
+let autosaveTimer=null;
+document.addEventListener('input', ()=>{
+    if(autosaveTimer) clearTimeout(autosaveTimer);
+    autosaveTimer = setTimeout(()=>{ saveState(); }, 1200);
+});
+
+
+// ================================
+// SISTEMA DE ABAS (COLAR AQUI)
+// ================================
+
+function showTab(tabName) {
+    // Esconde todas as abas
+    document.querySelectorAll(".tab-content").forEach(tab => {
+        tab.style.display = "none";
+    });
+
+    // Remove o ativo de todos botões
+    document.querySelectorAll(".tab-btn").forEach(btn => {
+        btn.classList.remove("active");
+    });
+
+    // Mostra a aba clicada
+    document.getElementById(tabName).style.display = "block";
+
+    // Marca o botão ativo
+    document.querySelector(`[data-tab="${tabName}"]`).classList.add("active");
+}
+
+// Ativa a aba padrão
+document.addEventListener("DOMContentLoaded", () => {
+    showTab("config");
 });
 </script>
 </body>
