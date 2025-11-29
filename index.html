@@ -605,63 +605,6 @@ saveState();
     navigator.serviceWorker.register(swUrl).then(()=> console.log('SW registrado')).catch(err=> console.warn('SW erro',err));
   }
 })();
-
-/* small UX niceties: autosave every 5s if changes detected */
-let autosaveTimer=null;
-document.addEventListener('input', ()=>{
-  if(autosaveTimer) clearTimeout(autosaveTimer);
-  autosaveTimer = setTimeout(()=>{ saveState(); }, 1200);
-  /* autosave */
-let autosaveTimer=null;
-document.addEventListener('input', ()=>{
-    if(autosaveTimer) clearTimeout(autosaveTimer);
-    autosaveTimer = setTimeout(()=>{ saveState(); }, 1200);
-});
-
-
-// ================================
-// SISTEMA DE ABAS (COLAR AQUI)
-// ================================
-
-function showTab(tabName) {
-    // Esconde todas as abas
-    document.querySelectorAll(".tab-content").forEach(tab => {
-        tab.style.display = "none";
-    });
-
-    // Remove o ativo de todos botões
-    document.querySelectorAll(".tab-btn").forEach(btn => {
-        btn.classList.remove("active");
-    });
-
-    // Mostra a aba clicada
-    document.getElementById(tabName).style.display = "block";
-
-    // Marca o botão ativo
-    document.querySelector(`[data-tab="${tabName}"]`).classList.add("active");
-}
-
-// Ativa a aba padrão
-document.addEventListener("DOMContentLoaded", () => {
-    showTab("config");
-  // --- SISTEMA DE ABAS ---
-const tabButtons = document.querySelectorAll('.tab-btn');
-const tabs = {
-    config: document.getElementById("tab-config"),
-    produtos: document.getElementById("tab-products"),
-    resultados: document.getElementById("tab-results")
-};
-
-tabButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-        const tab = btn.dataset.tab;
-
-        // esconde todas
-        Object.values(tabs).forEach(t => t.style.display = "none");
-
-        // ativa a tab clicada
-        tabs[tab].style.display = "block";
-
         // estilo dos botões
         tabButtons.forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
