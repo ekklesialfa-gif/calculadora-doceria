@@ -644,6 +644,32 @@ function showTab(tabName) {
 // Ativa a aba padrão
 document.addEventListener("DOMContentLoaded", () => {
     showTab("config");
+  // --- SISTEMA DE ABAS ---
+const tabButtons = document.querySelectorAll('.tab-btn');
+const tabs = {
+    config: document.getElementById("tab-config"),
+    produtos: document.getElementById("tab-products"),
+    resultados: document.getElementById("tab-results")
+};
+
+tabButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+        const tab = btn.dataset.tab;
+
+        // esconde todas
+        Object.values(tabs).forEach(t => t.style.display = "none");
+
+        // ativa a tab clicada
+        tabs[tab].style.display = "block";
+
+        // estilo dos botões
+        tabButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+    });
+});
+
+// deixa Config aberto ao carregar
+tabs.config.style.display = "block";
 });
 </script>
 </body>
