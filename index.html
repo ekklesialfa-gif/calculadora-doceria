@@ -671,6 +671,33 @@ tabButtons.forEach(btn => {
 // deixa Config aberto ao carregar
 tabs.config.style.display = "block";
 });
+  // --- SISTEMA DE ABAS ---
+const tabButtons = document.querySelectorAll('.tab-btn');
+
+const tabs = {
+    config: document.getElementById("tab-config"),
+    products: document.getElementById("tab-products"),
+    results: document.getElementById("tab-results")
+};
+
+tabButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+        const tab = btn.dataset.tab;
+
+        // esconde todas as abas
+        Object.values(tabs).forEach(t => t.style.display = "none");
+
+        // mostra a aba clicada
+        tabs[tab].style.display = "block";
+
+        // atualiza estado visual do botão
+        tabButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+    });
+});
+
+// inicia com Config aberta
+tabs.config.style.display = "block";
 </script>
 </body>
 </html>
